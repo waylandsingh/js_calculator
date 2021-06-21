@@ -1,0 +1,20 @@
+#button-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    border: 1px dashed red
+}
+
+.calc-button {
+    text-align: center;
+    border: 1px dotted lightblue;
+    width: auto;
+
+    height: auto;
+}
+
+#results {
+    font-size:larger;
+    font-style: oblique;
+    text-align: center;
+}
