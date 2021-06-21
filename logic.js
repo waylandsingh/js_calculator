@@ -26,12 +26,30 @@ function operate(func, a, b) {
     return operations[func](a,b)
 }
 
-// operate works properly
-// console.log(operate('add', 1,2))
-// console.log(operate('subtract', 1,2))
-// console.log(operate('multiply', 1,2))
-// console.log(operate('divide', 1,2))
+numberEventListeners = number => {
+    number.addEventListener('click', (e) => {
+        workingOperator += number.id
+        console.log(workingOperator)
+        results.textContent = workingOperator
 
+    })
+}
+
+// GLOBAL variables for state   
+// arrays for operator/ands
+let operators = [];
+let operands = [];
+let workingOperator = '';
+// immediately evaluate on the next operator input
+let evalImmediately = false;
+
+const results = document.querySelector('#results')
+
+// numbers append and change display
+const numbers = document.querySelectorAll('.number');
+numbers.forEach(numberEventListeners)
+
+// operators "flash" the working set the 'immediate eval' flag
 // need to get and store operands and operators
 
     // button is pressed
