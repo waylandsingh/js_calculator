@@ -1,3 +1,67 @@
+
+
+//order of operations not important for now
+let previousN = '', currentN = ''; // operand placeholders
+let currentOp = ''; // operator placeholder
+let firstN = true;
+
+const results = document.querySelector('#results')
+
+// select the number buttons
+const numberButtons = document.querySelectorAll('.number');
+
+// tell the number buttons to look for presses
+numberButtons.forEach(number => {
+    number.addEventListener('click',e => {
+        // on presses, append the number to the currentN 
+        if (firstN) {
+            previousN += number.id
+            results.textContent = previousN
+        } else {
+            currentN += number.id
+            results.textContent = currentN
+            console.log(previousN, currentOp, currentN)
+        }
+    })
+})
+
+// select the operator buttons
+const operators = document.querySelectorAll('.operator')
+// on presses, the operator either:
+operators.forEach(op => {
+    op.addEventListener('click', e => {
+    // turns firstNfalse and is assigned to currentOP
+    if (firstN && previousN.length>0) {
+        firstN = false;
+        currentOp = op.id;
+        console.log(previousN, currentOp);
+    } else if(op.id==='equal'){
+        results.textContent = operate(currentOp, parseFloat(previousN),parseFloat(currentN));
+        firstN = true;
+        currentOp = '';
+        currentN = '';
+        previousN = '';
+    }else if (previousN.length>0 && currentN.length>0) {
+        // evaluates (currentOP,prevN, currentN) replace currentOp, previousN
+        console.log(currentOp)
+        previousN = operate(currentOp, parseFloat(previousN),parseFloat(currentN));
+        currentOp = op.id;
+        currentN = '';
+        results.textContent = previousN;
+    }
+    })
+})
+
+// cancel button resets all global vars
+const cancel = document.querySelector('#cancel');
+cancel.addEventListener('click', e => {
+    previousN = '';
+    currentN = ''; // operand placeholders
+    currentOp = ''; // operator placeholder
+    firstN = true;
+    results.textContent = '0';
+})
+
 function add(a,b) {
     return a + b
 }
@@ -25,59 +89,6 @@ function operate(func, a, b) {
 
     return operations[func](a,b)
 }
-
-//order of operations not important for now
-let previousN = '', currentN = ''; // operand placeholders
-let currentOp = ''; // operator placeholder
-let firstN = true;
-
-const results = document.querySelector('#results')
-
-// select the number buttons
-const numberButtons = document.querySelectorAll('.number');
-
-// tell the number buttons to look for presses
-numberButtons.forEach(number => {
-    number.addEventListener('click',e => {
-        // on presses, append the number to the currentN 
-        if (firstN) {
-            previousN += number.id
-            results.textContent = previousN
-        } else {
-            currentN += number.id
-            results.textContent = currentN
-            console.log(previousN, currentOp, currentN)
-        }
-    })
-})
-
-
-// select the operator buttons
-const operators = document.querySelectorAll('.operator')
-// on presses, the operator either:
-operators.forEach(op => {
-    op.addEventListener('click', e => {
-    // turns firstNfalse and is assigned to currentOP
-    if (firstN) {
-        firstN = false;
-        currentOp = op.id;
-        console.log(previousN, currentOp);
-    } else if(op.id==='equal'){
-        previousN = operate(currentOp, parseInt(previousN),parseInt(currentN));
-        firstN = true;
-        currentOp = '';
-        currentN = '';
-        results.textContent = previousN;
-    }else {
-        // evaluates (currentOP,prevN, currentN) replace currentOp, previousN
-        console.log(currentOp)
-        previousN = operate(currentOp, parseInt(previousN),parseInt(currentN));
-        currentOp = op.id;
-        currentN = '';
-        results.textContent = previousN;
-    }
-    })
-})
 
 
 // previous attempts
