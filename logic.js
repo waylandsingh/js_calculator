@@ -41,7 +41,7 @@ operators.forEach(op => {
         currentOp = '';
         currentN = '';
         previousN = '';
-    }else if (previousN.length>0 && currentN.length>0) {
+    }else {
         // evaluates (currentOP,prevN, currentN) replace currentOp, previousN
         console.log(currentOp)
         previousN = operate(currentOp, parseFloat(previousN),parseFloat(currentN));
