@@ -46,6 +46,7 @@ numberButtons.forEach(number => {
         } else {
             currentN += number.id
             results.textContent = currentN
+            console.log(previousN, currentOp, currentN)
         }
     })
 })
@@ -54,8 +55,30 @@ numberButtons.forEach(number => {
 // select the operator buttons
 const operators = document.querySelectorAll('.operator')
 // on presses, the operator either:
-// turns firstNfalse and is assigned to currentOP
-// evaluates currentOP,prevN, currentN, replace currentOp, previousN
+operators.forEach(op => {
+    op.addEventListener('click', e => {
+    // turns firstNfalse and is assigned to currentOP
+    if (firstN) {
+        firstN = false;
+        currentOp = op.id;
+        console.log(previousN, currentOp);
+    } else if(op.id==='equal'){
+        previousN = operate(currentOp, parseInt(previousN),parseInt(currentN));
+        firstN = true;
+        currentOp = '';
+        currentN = '';
+        results.textContent = previousN;
+    }else {
+        // evaluates (currentOP,prevN, currentN) replace currentOp, previousN
+        console.log(currentOp)
+        previousN = operate(currentOp, parseInt(previousN),parseInt(currentN));
+        currentOp = op.id;
+        currentN = '';
+        results.textContent = previousN;
+    }
+    })
+})
+
 
 // previous attempts
 // // GLOBAL variables for state   
