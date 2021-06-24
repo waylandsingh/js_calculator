@@ -1,16 +1,31 @@
+#container {
+    text-align: center;
+}
 #button-grid{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
-    border: 1px dashed red
+    border: 1px dashed red;
+}
+
+#button-grid div {
+
 }
 
 .calc-button {
     text-align: center;
     border: 1px dotted lightblue;
     width: auto;
-
+    background-color: rgb(169, 186, 202);
     height: auto;
+}
+
+.operator {
+    background-color: darkgray;
+}
+
+#cancel {
+    background-color:lightcoral;
 }
 
 #results {
