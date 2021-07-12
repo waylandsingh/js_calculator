@@ -1,9 +1,31 @@
+
+body {
+    margin:0px;
+    padding: 0px;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 #container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     text-align: center;
+    width: 250px;
+    height: 300px;
+    border: 1px solid black;
+    padding: 30px;
+    border-radius: 30px;
+    background-color: chartreuse;
 }
 #button-grid{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
     grid-template-rows: auto;
     border: 1px dashed red;
 }
@@ -13,6 +35,7 @@
 }
 
 .calc-button {
+    padding: 10px;
     text-align: center;
     border: 1px dotted lightblue;
     width: auto;
@@ -32,4 +55,6 @@
     font-size:larger;
     font-style: oblique;
     text-align: center;
+    background-color: cornsilk;
+    padding: 10px 0px 10px 0px;
 }
